@@ -1,12 +1,16 @@
 #include<iostream>
 #include<string>
+#include<stdexcept>
 
 using namespace std;
 
 class ExceptieCustom : public exception
 {
 public:
-	ExceptieCustom(const char* mesaj) :exception(mesaj) {}
+	ExceptieCustom(const char* mesaj) :exception(), mesaj(mesaj) {}
+	const char* what() const noexcept override { return mesaj.c_str(); }
+private:
+	string mesaj;
 };
 
 class Produs {
@@ -31,7 +35,7 @@ public:
 		cout << endl << "Pret: " << this->pret;
 	}
 
-	~Produs() {
+	virtual ~Produs() {
 	}
 
 	virtual float getProcentReducere() = 0;
@@ -91,7 +95,7 @@ public:
 	}
 };
 
-void main() {
+int main(void) {
 
 	//try {
 	//	Produs frigider(1, "Frigider", 0);
@@ -119,4 +123,6 @@ void main() {
 
 	MathInterface* operation = new MathOperation();
 	cout << endl << operation->adunare(1, 2);
+
+    return 0;
 }

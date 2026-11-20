@@ -264,7 +264,7 @@ void operator>>(istream& in, Cofetarie& c) {
 
 int Cofetarie::nrCofetarii = 0;
 
-void main() {
+int main(void) {
 	Cofetarie cofetarieGenerala;
 
 	if (!cofetarieGenerala) {
@@ -313,4 +313,6 @@ void main() {
 	delete cofetarieRomana;
 
 	cout << endl << "Numar cofetarii: " << Cofetarie::nrCofetarii;
+
+	return 0;
 }
